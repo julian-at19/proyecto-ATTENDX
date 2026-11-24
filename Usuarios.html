@@ -1,0 +1,558 @@
+<!DOCTYPE html> <!-- Documento HTML5. -->
+<!-- Raíz en español. -->
+<html lang="es">
+<!-- Abre la cabecera. -->
+<head>
+    <!-- Codificación UTF-8. -->
+    <meta charset="UTF-8">
+    <!-- Diseño adaptable. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la pestaña. Cambia en cada módulo. -->
+    <title>Usuarios | TiendaSENA</title>
+    <!-- CSS de Bootstrap. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Íconos. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Nuestros estilos (después de Bootstrap). -->
+    <link href="css/estilos.css" rel="stylesheet">
+<!-- Cierra la cabecera. -->
+</head>
+<!-- Fondo gris muy claro para que las tarjetas blancas resalten. -->
+<body class="bg-body-tertiary">
+
+    <!-- ===================== MENÚ LATERAL ===================== -->
+    <!-- offcanvas-lg: en pantallas menores a lg es un panel oculto que se desliza; desde lg se muestra normal. offcanvas-start lo hace salir por la izquierda. sidebar es nuestra clase. El id lo usa el botón que lo abre. -->
+    <aside class="offcanvas-lg offcanvas-start sidebar" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
+        <!-- Encabezado del panel; Bootstrap solo lo muestra en celular. -->
+        <div class="offcanvas-header border-bottom border-secondary">
+            <!-- Nombre del sistema en el panel móvil. -->
+            <h5 class="offcanvas-title" id="tituloMenu"><i class="bi bi-shop me-2"></i>TiendaSENA</h5>
+            <!-- Botón “X” blanco que cierra el panel. data-bs-target indica cuál panel cerrar. -->
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
+        <!-- Cierra el encabezado móvil. -->
+        </div>
+        <!-- Cuerpo del menú: Flexbox en columna para apilar logo, enlaces y botón de salida. -->
+        <div class="offcanvas-body d-flex flex-column p-3">
+            <!-- Logo que solo se ve en computador (d-none d-lg-flex): en celular ya está en el encabezado del panel. Al hacer clic vuelve al dashboard. -->
+            <a href="dashboard.html" class="d-none d-lg-flex align-items-center mb-3 text-white text-decoration-none fs-5 fw-bold">
+                <!-- Ícono verde y nombre. -->
+                <i class="bi bi-shop me-2 text-sena"></i> TiendaSENA
+            <!-- Cierra el logo. -->
+            </a>
+            <!-- Lista de navegación en columna (flex-column). nav-pills da forma de “píldora” al enlace activo. mb-auto empuja lo que sigue hasta el fondo. -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <!-- Enlace al dashboard. active lo resalta en verde y aria-current="page" avisa a los lectores de pantalla que es la página actual. **En cada módulo, el active pasa a su propio enlace.** -->
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <!-- Enlace al módulo de usuarios (clase 5). -->
+                <li class="nav-item"><a href="usuarios.html" class="nav-link active" aria-current="page"><i class="bi bi-people me-2"></i>Usuarios</a></li>
+                <!-- Enlace a categorías (clase 6). -->
+                <li class="nav-item"><a href="categorias.html" class="nav-link"><i class="bi bi-tags me-2"></i>Categorías</a></li>
+                <!-- Enlace a subcategorías (clase 7). -->
+                <li class="nav-item"><a href="subcategorias.html" class="nav-link"><i class="bi bi-diagram-3 me-2"></i>Subcategorías</a></li>
+                <!-- Enlace a productos (clase 8). -->
+                <li class="nav-item"><a href="productos.html" class="nav-link"><i class="bi bi-box-seam me-2"></i>Productos</a></li>
+            <!-- Cierra la lista de navegación. -->
+            </ul>
+            <!-- Línea divisoria. -->
+            <hr>
+            <!-- Botón que vuelve al login (index.html): así “se cierra la sesión” en el prototipo. -->
+            <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
+        <!-- Cierra el cuerpo del menú. -->
+        </div>
+    <!-- Cierra el menú lateral. -->
+    </aside>
+
+    <!-- ===================== ZONA DERECHA ===================== -->
+    <!-- Nuestra clase contenido aplica el margin-left en computador. -->
+    <div class="contenido">
+
+        <!-- Barra superior -->
+        <!-- Barra blanca con borde inferior. sticky-top la deja pegada arriba al hacer scroll. -->
+        <nav class="navbar bg-white border-bottom px-3 sticky-top">
+            <!-- Botón para abrir el menú en celular. d-lg-none lo oculta en computador (allá el menú siempre se ve). data-bs-toggle="offcanvas" + data-bs-target="#menuLateral" abren el panel. -->
+            <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menú">
+                <!-- Ícono de “hamburguesa”. -->
+                <i class="bi bi-list"></i>
+            <!-- Cierra el botón. -->
+            </button>
+            <!-- Texto de la barra; se oculta en celulares muy pequeños (d-none d-sm-inline). -->
+            <span class="navbar-text fw-semibold d-none d-sm-inline">Panel de administración</span>
+            <!-- Menú desplegable del usuario; ms-auto lo empuja a la derecha. -->
+            <div class="dropdown ms-auto">
+                <!-- Botón que abre el desplegable. dropdown-toggle dibuja la flechita; data-bs-toggle="dropdown" lo hace funcionar. -->
+                <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Ícono de usuario. -->
+                    <i class="bi bi-person-circle fs-5"></i>
+                    <!-- Nombre del usuario, visible desde tablet. -->
+                    <span class="d-none d-md-inline">Admin SENA</span>
+                <!-- Cierra el botón. -->
+                </button>
+                <!-- Lista de opciones. dropdown-menu-end la alinea a la derecha para que no se salga de la pantalla. -->
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <!-- Encabezado no clicable dentro del menú. -->
+                    <li><h6 class="dropdown-header">admin@sena.edu.co</h6></li>
+                    <!-- Opción del menú (pantalla aún no construida). -->
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
+                    <!-- Línea separadora. -->
+                    <li><hr class="dropdown-divider"></li>
+                    <!-- Otra forma de salir, en rojo (text-danger). -->
+                    <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a></li>
+                <!-- Cierra la lista. -->
+                </ul>
+            <!-- Cierra el desplegable. -->
+            </div>
+        <!-- Cierra la barra superior. -->
+        </nav>
+
+        <!-- Contenido de la página -->
+        <!-- Relleno 3 en celular y 4 desde tablet. -->
+        <main class="p-3 p-md-4">
+<!-- INICIO CONTENIDO -->
+            <!-- Encabezado del módulo -->
+            <!-- Flexbox: título a la izquierda y botón a la derecha. flex-wrap permite que en celular el botón baje a otra línea. -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                <!-- Bloque del título. -->
+                <div>
+                    <!-- Título de la página. -->
+                    <h1 class="h3 mb-1">Gestión de usuarios</h1>
+                    <!-- Breadcrumb (migas de pan): muestra dónde está el usuario dentro del sistema. -->
+                    <nav aria-label="breadcrumb">
+                        <!-- Lista ordenada con estilo de migas. -->
+                        <ol class="breadcrumb mb-0 small">
+                            <!-- Primer nivel, con enlace para volver. -->
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <!-- Nivel actual, sin enlace. Bootstrap agrega el separador / automáticamente. -->
+                            <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                        <!-- Cierra la lista. -->
+                        </ol>
+                    <!-- Cierra el breadcrumb. -->
+                    </nav>
+                <!-- Cierra el bloque del título. -->
+                </div>
+                <!-- Botón principal (Crear). data-bs-toggle="modal" y data-bs-target="#modalUsuario" abren el modal del formulario. -->
+                <button type="button" class="btn btn-sena" data-bs-toggle="modal" data-bs-target="#modalUsuario">
+                    <!-- Ícono y texto del botón. -->
+                    <i class="bi bi-person-plus me-1"></i> Nuevo usuario
+                <!-- Cierra el botón. -->
+                </button>
+            <!-- Cierra el encabezado. -->
+            </div>
+
+            <!-- Una tarjeta envuelve filtros, tabla y paginación. -->
+            <div class="card border-0 shadow-sm">
+                <!-- Cuerpo de la tarjeta. -->
+                <div class="card-body">
+
+                    <!-- Filtros -->
+                    <!-- El formulario es una fila de la rejilla (row) con espacio pequeño (g-2). role="search" indica que es un buscador. -->
+                    <form class="row g-2 mb-3" role="search">
+                        <!-- La búsqueda ocupa la mitad desde tablet; todo el ancho en celular. -->
+                        <div class="col-md-6">
+                            <!-- input-group pega un ícono o botón al campo de texto. -->
+                            <div class="input-group">
+                                <!-- Cajita gris con la lupa, pegada a la izquierda del campo. -->
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <!-- Campo de búsqueda. aria-label reemplaza al label visible para lectores de pantalla. -->
+                                <input type="search" class="form-control" placeholder="Buscar por nombre, correo o documento..." aria-label="Buscar usuario">
+                            <!-- Cierra el grupo. -->
+                            </div>
+                        <!-- Cierra la columna. -->
+                        </div>
+                        <!-- Medio ancho en celular, un cuarto desde tablet. -->
+                        <div class="col-6 col-md-3">
+                            <!-- form-select da estilo de Bootstrap a la lista desplegable. -->
+                            <select class="form-select" aria-label="Filtrar por rol">
+                                <!-- selected marca la opción elegida por defecto. -->
+                                <option selected>Todos los roles</option>
+                                <!-- Opción de rol. -->
+                                <option>Administrador</option>
+                                <!-- Opción de rol. -->
+                                <option>Vendedor</option>
+                                <!-- Opción de rol. -->
+                                <option>Cliente</option>
+                            <!-- Cierra la lista. -->
+                            </select>
+                        <!-- Cierra la columna. -->
+                        </div>
+                        <!-- Columna del segundo filtro. -->
+                        <div class="col-6 col-md-3">
+                            <!-- Filtro por estado. -->
+                            <select class="form-select" aria-label="Filtrar por estado">
+                                <!-- Opción por defecto. -->
+                                <option selected>Todos los estados</option>
+                                <!-- Opción. -->
+                                <option>Activo</option>
+                                <!-- Opción. -->
+                                <option>Inactivo</option>
+                            <!-- Cierra la lista. -->
+                            </select>
+                        <!-- Cierra la columna. -->
+                        </div>
+                    <!-- Cierra los filtros. -->
+                    </form>
+
+                    <!-- Tabla de usuarios -->
+                    <!-- Desplazamiento horizontal en celular. -->
+                    <div class="table-responsive">
+                        <!-- Tabla con resaltado y centrado vertical. -->
+                        <table class="table table-hover align-middle">
+                            <!-- Encabezado gris claro. -->
+                            <thead class="table-light">
+                                <!-- Fila de títulos. -->
+                                <tr>
+                                    <!-- scope="col" indica que el título pertenece a la columna (accesibilidad). -->
+                                    <th scope="col">#</th>
+                                    <!-- Nombre y correo. -->
+                                    <th scope="col">Usuario</th>
+                                    <!-- Tipo y número de documento. -->
+                                    <th scope="col">Documento</th>
+                                    <!-- Rol en el sistema. -->
+                                    <th scope="col">Rol</th>
+                                    <!-- Activo o inactivo. -->
+                                    <th scope="col">Estado</th>
+                                    <!-- Botones de editar y eliminar, alineados a la derecha. -->
+                                    <th scope="col" class="text-end">Acciones</th>
+                                <!-- Cierra la fila. -->
+                                </tr>
+                            <!-- Cierra el encabezado. -->
+                            </thead>
+                            <!-- Cuerpo con los datos de ejemplo. -->
+                            <tbody>
+                                <!-- Usuario 1. -->
+                                <tr>
+                                    <!-- Número de fila. -->
+                                    <td>1</td>
+                                    <!-- Celda compuesta: avatar + nombre + correo. -->
+                                    <td>
+                                        <!-- Flexbox para poner el avatar al lado del texto. -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <!-- Nuestro círculo avatar con las iniciales. -->
+                                            <span class="avatar bg-success-subtle text-success">LP</span>
+                                            <!-- Bloque de texto. -->
+                                            <div>
+                                                <!-- Nombre en seminegrita. -->
+                                                <div class="fw-semibold">Laura Pérez</div>
+                                                <!-- Correo pequeño y gris. -->
+                                                <div class="small text-secondary">laura.perez@correo.com</div>
+                                            <!-- Cierra el bloque. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Documento. -->
+                                    <td>CC 1.023.456.789</td>
+                                    <!-- Rol en un badge azul. -->
+                                    <td><span class="badge text-bg-primary">Administrador</span></td>
+                                    <!-- Estado: badge verde con forma de píldora (rounded-pill). -->
+                                    <td><span class="badge rounded-pill text-bg-success">Activo</span></td>
+                                    <!-- Celda de acciones; text-nowrap evita que los botones se partan en dos líneas. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Botón Editar (la “U”): abre el mismo modal del formulario. title muestra un texto al dejar el mouse encima. -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" title="Editar">
+                                            <!-- Ícono de lápiz. -->
+                                            <i class="bi bi-pencil"></i>
+                                        <!-- Cierra el botón. -->
+                                        </button>
+                                        <!-- Botón Eliminar (la “D”): abre el modal de confirmación. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar">
+                                            <!-- Ícono de papelera. -->
+                                            <i class="bi bi-trash"></i>
+                                        <!-- Cierra el botón. -->
+                                        </button>
+                                    <!-- Cierra la celda de acciones. -->
+                                    </td>
+                                <!-- Cierra el usuario 1. -->
+                                </tr>
+                                <!-- Usuario 2 (misma estructura). -->
+                                <tr>
+                                    <!-- Número. -->
+                                    <td>2</td>
+                                    <!-- Celda compuesta. -->
+                                    <td>
+                                        <!-- Flexbox. -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <!-- Avatar azul. -->
+                                            <span class="avatar bg-primary-subtle text-primary">CG</span>
+                                            <!-- Texto. -->
+                                            <div>
+                                                <!-- Nombre. -->
+                                                <div class="fw-semibold">Carlos Gómez</div>
+                                                <!-- Correo. -->
+                                                <div class="small text-secondary">carlos.gomez@correo.com</div>
+                                            <!-- Cierra el texto. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Documento. -->
+                                    <td>CC 80.123.456</td>
+                                    <!-- Rol en badge celeste. -->
+                                    <td><span class="badge text-bg-info">Vendedor</span></td>
+                                    <!-- Estado activo. -->
+                                    <td><span class="badge rounded-pill text-bg-success">Activo</span></td>
+                                    <!-- Acciones. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Editar (escrito en una sola línea: es lo mismo). -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" title="Editar"><i class="bi bi-pencil"></i></button>
+                                        <!-- Eliminar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                    <!-- Cierra las acciones. -->
+                                    </td>
+                                <!-- Cierra el usuario 2. -->
+                                </tr>
+                                <!-- Usuario 3. -->
+                                <tr>
+                                    <!-- Número. -->
+                                    <td>3</td>
+                                    <!-- Celda compuesta. -->
+                                    <td>
+                                        <!-- Flexbox. -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <!-- Avatar gris (usuario inactivo). -->
+                                            <span class="avatar bg-secondary-subtle text-secondary">AM</span>
+                                            <!-- Texto. -->
+                                            <div>
+                                                <!-- Nombre. -->
+                                                <div class="fw-semibold">Ana Martínez</div>
+                                                <!-- Correo. -->
+                                                <div class="small text-secondary">ana.martinez@correo.com</div>
+                                            <!-- Cierra el texto. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Documento (tarjeta de identidad). -->
+                                    <td>TI 1.098.765.432</td>
+                                    <!-- Rol en badge gris. -->
+                                    <td><span class="badge text-bg-secondary">Cliente</span></td>
+                                    <!-- Estado inactivo en rojo. -->
+                                    <td><span class="badge rounded-pill text-bg-danger">Inactivo</span></td>
+                                    <!-- Acciones. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Editar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" title="Editar"><i class="bi bi-pencil"></i></button>
+                                        <!-- Eliminar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                    <!-- Cierra las acciones. -->
+                                    </td>
+                                <!-- Cierra el usuario 3. -->
+                                </tr>
+                            <!-- Cierra el cuerpo. -->
+                            </tbody>
+                        <!-- Cierra la tabla. -->
+                        </table>
+                    <!-- Cierra la envoltura responsive. -->
+                    </div>
+
+                    <!-- Paginación -->
+                    <!-- Texto informativo a la izquierda y paginación a la derecha. -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <!-- Resumen de resultados. -->
+                        <small class="text-secondary">Mostrando 1 a 3 de 24 usuarios</small>
+                        <!-- La paginación es una navegación. -->
+                        <nav aria-label="Paginación de usuarios">
+                            <!-- Componente pagination, tamaño pequeño. -->
+                            <ul class="pagination pagination-sm mb-0">
+                                <!-- disabled: no hay página anterior a la 1. -->
+                                <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                                <!-- Página actual (verde por nuestra personalización). -->
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                                <!-- Página 2. -->
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <!-- Página 3. -->
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <!-- Botón siguiente. -->
+                                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                            <!-- Cierra la lista. -->
+                            </ul>
+                        <!-- Cierra la navegación. -->
+                        </nav>
+                    <!-- Cierra el bloque de paginación. -->
+                    </div>
+                <!-- Cierra el cuerpo de la tarjeta. -->
+                </div>
+            <!-- Cierra la tarjeta. -->
+            </div>
+
+            <!-- Modal: crear / editar usuario -->
+            <!-- Modal oculto; su id es el destino de los botones “Nuevo usuario” y “Editar”. -->
+            <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="tituloModalUsuario" aria-hidden="true">
+                <!-- modal-lg: modal ancho. modal-dialog-scrollable: si el formulario es largo, solo se desplaza el cuerpo. -->
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <!-- Contenido del modal. -->
+                    <div class="modal-content">
+                        <!-- Encabezado. -->
+                        <div class="modal-header">
+                            <!-- Título del modal; fs-5 ajusta el tamaño de letra. -->
+                            <h2 class="modal-title fs-5" id="tituloModalUsuario"><i class="bi bi-person-vcard me-2"></i>Datos del usuario</h2>
+                            <!-- Botón “X” para cerrar. -->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <!-- Cierra el encabezado. -->
+                        </div>
+                        <!-- Cuerpo con el formulario. -->
+                        <div class="modal-body">
+                            <!-- El formulario es una fila de la rejilla: así ponemos dos campos por línea. -->
+                            <form class="row g-3">
+                                <!-- Mitad del ancho desde tablet. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. Usamos el prefijo usu en los id para no repetirlos con otros formularios. -->
+                                    <label for="usuNombres" class="form-label">Nombres</label>
+                                    <!-- Campo obligatorio. -->
+                                    <input type="text" class="form-control" id="usuNombres" placeholder="Ej: Laura" required>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Otra mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuApellidos" class="form-label">Apellidos</label>
+                                    <!-- Campo obligatorio. -->
+                                    <input type="text" class="form-control" id="usuApellidos" placeholder="Ej: Pérez Rojas" required>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Un tercio del ancho. -->
+                                <div class="col-md-4">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuTipoDoc" class="form-label">Tipo de documento</label>
+                                    <!-- Lista de tipos de documento. -->
+                                    <select class="form-select" id="usuTipoDoc">
+                                        <!-- Opción CC. -->
+                                        <option value="CC">Cédula de ciudadanía</option>
+                                        <!-- Opción TI. -->
+                                        <option value="TI">Tarjeta de identidad</option>
+                                        <!-- Opción CE. -->
+                                        <option value="CE">Cédula de extranjería</option>
+                                        <!-- Opción pasaporte. -->
+                                        <option value="PP">Pasaporte</option>
+                                    <!-- Cierra la lista. -->
+                                    </select>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Dos tercios del ancho (4 + 8 = 12). -->
+                                <div class="col-md-8">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuDocumento" class="form-label">Número de documento</label>
+                                    <!-- inputmode="numeric" muestra el teclado numérico en el celular. -->
+                                    <input type="text" class="form-control" id="usuDocumento" inputmode="numeric" placeholder="Sin puntos ni espacios">
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuCorreo" class="form-label">Correo electrónico</label>
+                                    <!-- Campo de correo con validación del navegador. -->
+                                    <input type="email" class="form-control" id="usuCorreo" placeholder="nombre@correo.com" required>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuTelefono" class="form-label">Teléfono</label>
+                                    <!-- type="tel" muestra el teclado telefónico. -->
+                                    <input type="tel" class="form-control" id="usuTelefono" placeholder="300 123 4567">
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuRol" class="form-label">Rol</label>
+                                    <!-- Lista de roles, obligatoria. -->
+                                    <select class="form-select" id="usuRol" required>
+                                        <!-- Opción guía: disabled impide elegirla de nuevo y value="" hace que required la considere vacía. -->
+                                        <option value="" selected disabled>Seleccione…</option>
+                                        <!-- Rol. -->
+                                        <option>Administrador</option>
+                                        <!-- Rol. -->
+                                        <option>Vendedor</option>
+                                        <!-- Rol. -->
+                                        <option>Cliente</option>
+                                    <!-- Cierra la lista. -->
+                                    </select>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="usuClave" class="form-label">Contraseña</label>
+                                    <!-- Campo de contraseña. aria-describedby lo conecta con el texto de ayuda de abajo. -->
+                                    <input type="password" class="form-control" id="usuClave" aria-describedby="ayudaClave">
+                                    <!-- form-text: texto de ayuda pequeño y gris bajo el campo. -->
+                                    <div id="ayudaClave" class="form-text">Mínimo 8 caracteres, con números y letras.</div>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Todo el ancho. -->
+                                <div class="col-12">
+                                    <!-- form-switch convierte la casilla en un interruptor. -->
+                                    <div class="form-check form-switch">
+                                        <!-- Interruptor encendido por defecto (checked). -->
+                                        <input class="form-check-input" type="checkbox" role="switch" id="usuActivo" checked>
+                                        <!-- Etiqueta del interruptor. -->
+                                        <label class="form-check-label" for="usuActivo">Usuario activo</label>
+                                    <!-- Cierra el interruptor. -->
+                                    </div>
+                                <!-- Cierra la columna. -->
+                                </div>
+                            <!-- Cierra el formulario. -->
+                            </form>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie con los botones. -->
+                        <div class="modal-footer">
+                            <!-- Cierra sin guardar. -->
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- En el prototipo “Guardar” solo cierra el modal; en el sistema real enviará los datos al servidor. -->
+                            <button type="button" class="btn btn-sena" data-bs-dismiss="modal"><i class="bi bi-save me-1"></i>Guardar</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal del formulario. -->
+            </div>
+
+            <!-- Modal: confirmar eliminación -->
+            <!-- Modal destino de los botones de papelera. -->
+            <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="tituloModalEliminar" aria-hidden="true">
+                <!-- Centrado en pantalla y pequeño (modal-sm). -->
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <!-- Contenido. -->
+                    <div class="modal-content">
+                        <!-- Cuerpo centrado con buen relleno (este modal no tiene encabezado). -->
+                        <div class="modal-body text-center p-4">
+                            <!-- Ícono grande de advertencia en rojo. -->
+                            <i class="bi bi-exclamation-triangle text-danger display-5"></i>
+                            <!-- Pregunta clara. -->
+                            <h2 class="h5 mt-3" id="tituloModalEliminar">¿Eliminar este usuario?</h2>
+                            <!-- Advertencia de la consecuencia. -->
+                            <p class="text-secondary small mb-0">Esta acción no se puede deshacer.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie con botones centrados, sin línea divisoria. -->
+                        <div class="modal-footer justify-content-center border-0 pt-0">
+                            <!-- Opción segura, con poco énfasis. -->
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Acción destructiva en rojo y con un texto que dice exactamente qué pasará. -->
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sí, eliminar</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal de eliminación. -->
+            </div>
+<!-- FIN CONTENIDO -->
+        <!-- Cierra el contenido. -->
+        </main>
+    <!-- Cierra la zona derecha. -->
+    </div>
+
+    <!-- JavaScript de Bootstrap: necesario para el menú deslizable, el desplegable del usuario y los modales. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Cierra el cuerpo. -->
+</body>
+<!-- Cierra el documento. -->
+</html>

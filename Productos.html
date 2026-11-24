@@ -1,0 +1,602 @@
+<!DOCTYPE html> <!-- Documento HTML5. -->
+<!-- Raíz en español. -->
+<html lang="es">
+<!-- Abre la cabecera. -->
+<head>
+    <!-- Codificación UTF-8. -->
+    <meta charset="UTF-8">
+    <!-- Diseño adaptable. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la pestaña. Cambia en cada módulo. -->
+    <title>Productos | TiendaSENA</title>
+    <!-- CSS de Bootstrap. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Íconos. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Nuestros estilos (después de Bootstrap). -->
+    <link href="css/estilos.css" rel="stylesheet">
+<!-- Cierra la cabecera. -->
+</head>
+<!-- Fondo gris muy claro para que las tarjetas blancas resalten. -->
+<body class="bg-body-tertiary">
+
+    <!-- ===================== MENÚ LATERAL ===================== -->
+    <!-- offcanvas-lg: en pantallas menores a lg es un panel oculto que se desliza; desde lg se muestra normal. offcanvas-start lo hace salir por la izquierda. sidebar es nuestra clase. El id lo usa el botón que lo abre. -->
+    <aside class="offcanvas-lg offcanvas-start sidebar" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
+        <!-- Encabezado del panel; Bootstrap solo lo muestra en celular. -->
+        <div class="offcanvas-header border-bottom border-secondary">
+            <!-- Nombre del sistema en el panel móvil. -->
+            <h5 class="offcanvas-title" id="tituloMenu"><i class="bi bi-shop me-2"></i>TiendaSENA</h5>
+            <!-- Botón “X” blanco que cierra el panel. data-bs-target indica cuál panel cerrar. -->
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
+        <!-- Cierra el encabezado móvil. -->
+        </div>
+        <!-- Cuerpo del menú: Flexbox en columna para apilar logo, enlaces y botón de salida. -->
+        <div class="offcanvas-body d-flex flex-column p-3">
+            <!-- Logo que solo se ve en computador (d-none d-lg-flex): en celular ya está en el encabezado del panel. Al hacer clic vuelve al dashboard. -->
+            <a href="dashboard.html" class="d-none d-lg-flex align-items-center mb-3 text-white text-decoration-none fs-5 fw-bold">
+                <!-- Ícono verde y nombre. -->
+                <i class="bi bi-shop me-2 text-sena"></i> TiendaSENA
+            <!-- Cierra el logo. -->
+            </a>
+            <!-- Lista de navegación en columna (flex-column). nav-pills da forma de “píldora” al enlace activo. mb-auto empuja lo que sigue hasta el fondo. -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <!-- Enlace al dashboard. active lo resalta en verde y aria-current="page" avisa a los lectores de pantalla que es la página actual. **En cada módulo, el active pasa a su propio enlace.** -->
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <!-- Enlace al módulo de usuarios (clase 5). -->
+                <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-people me-2"></i>Usuarios</a></li>
+                <!-- Enlace a categorías (clase 6). -->
+                <li class="nav-item"><a href="categorias.html" class="nav-link"><i class="bi bi-tags me-2"></i>Categorías</a></li>
+                <!-- Enlace a subcategorías (clase 7). -->
+                <li class="nav-item"><a href="subcategorias.html" class="nav-link"><i class="bi bi-diagram-3 me-2"></i>Subcategorías</a></li>
+                <!-- Enlace a productos (clase 8). -->
+                <li class="nav-item"><a href="productos.html" class="nav-link active" aria-current="page"><i class="bi bi-box-seam me-2"></i>Productos</a></li>
+            <!-- Cierra la lista de navegación. -->
+            </ul>
+            <!-- Línea divisoria. -->
+            <hr>
+            <!-- Botón que vuelve al login (index.html): así “se cierra la sesión” en el prototipo. -->
+            <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
+        <!-- Cierra el cuerpo del menú. -->
+        </div>
+    <!-- Cierra el menú lateral. -->
+    </aside>
+
+    <!-- ===================== ZONA DERECHA ===================== -->
+    <!-- Nuestra clase contenido aplica el margin-left en computador. -->
+    <div class="contenido">
+
+        <!-- Barra superior -->
+        <!-- Barra blanca con borde inferior. sticky-top la deja pegada arriba al hacer scroll. -->
+        <nav class="navbar bg-white border-bottom px-3 sticky-top">
+            <!-- Botón para abrir el menú en celular. d-lg-none lo oculta en computador (allá el menú siempre se ve). data-bs-toggle="offcanvas" + data-bs-target="#menuLateral" abren el panel. -->
+            <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menú">
+                <!-- Ícono de “hamburguesa”. -->
+                <i class="bi bi-list"></i>
+            <!-- Cierra el botón. -->
+            </button>
+            <!-- Texto de la barra; se oculta en celulares muy pequeños (d-none d-sm-inline). -->
+            <span class="navbar-text fw-semibold d-none d-sm-inline">Panel de administración</span>
+            <!-- Menú desplegable del usuario; ms-auto lo empuja a la derecha. -->
+            <div class="dropdown ms-auto">
+                <!-- Botón que abre el desplegable. dropdown-toggle dibuja la flechita; data-bs-toggle="dropdown" lo hace funcionar. -->
+                <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Ícono de usuario. -->
+                    <i class="bi bi-person-circle fs-5"></i>
+                    <!-- Nombre del usuario, visible desde tablet. -->
+                    <span class="d-none d-md-inline">Admin SENA</span>
+                <!-- Cierra el botón. -->
+                </button>
+                <!-- Lista de opciones. dropdown-menu-end la alinea a la derecha para que no se salga de la pantalla. -->
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <!-- Encabezado no clicable dentro del menú. -->
+                    <li><h6 class="dropdown-header">admin@sena.edu.co</h6></li>
+                    <!-- Opción del menú (pantalla aún no construida). -->
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
+                    <!-- Línea separadora. -->
+                    <li><hr class="dropdown-divider"></li>
+                    <!-- Otra forma de salir, en rojo (text-danger). -->
+                    <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a></li>
+                <!-- Cierra la lista. -->
+                </ul>
+            <!-- Cierra el desplegable. -->
+            </div>
+        <!-- Cierra la barra superior. -->
+        </nav>
+
+        <!-- Contenido de la página -->
+        <!-- Relleno 3 en celular y 4 desde tablet. -->
+        <main class="p-3 p-md-4">
+<!-- INICIO CONTENIDO -->
+            <!-- Encabezado del módulo -->
+            <!-- Flexbox con salto de línea. -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                <!-- Bloque del título. -->
+                <div>
+                    <!-- Título. -->
+                    <h1 class="h3 mb-1">Gestión de productos</h1>
+                    <!-- Migas de pan. -->
+                    <nav aria-label="breadcrumb">
+                        <!-- Lista. -->
+                        <ol class="breadcrumb mb-0 small">
+                            <!-- Nivel 1. -->
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <!-- Nivel actual. -->
+                            <li class="breadcrumb-item active" aria-current="page">Productos</li>
+                        <!-- Cierra la lista. -->
+                        </ol>
+                    <!-- Cierra las migas. -->
+                    </nav>
+                <!-- Cierra el bloque. -->
+                </div>
+                <!-- Grupo de dos botones con espacio entre ellos. -->
+                <div class="d-flex gap-2">
+                    <!-- Acción secundaria (aún sin función): botón solo con borde. -->
+                    <button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-earmark-excel me-1"></i>Exportar</button>
+                    <!-- Acción principal: abre el formulario. -->
+                    <button type="button" class="btn btn-sena" data-bs-toggle="modal" data-bs-target="#modalProducto"><i class="bi bi-plus-lg me-1"></i>Nuevo producto</button>
+                <!-- Cierra el grupo. -->
+                </div>
+            <!-- Cierra el encabezado. -->
+            </div>
+
+            <!-- Tarjeta con filtros, tabla y paginación. -->
+            <div class="card border-0 shadow-sm">
+                <!-- Cuerpo. -->
+                <div class="card-body">
+
+                    <!-- Filtros -->
+                    <!-- Formulario en rejilla. -->
+                    <form class="row g-2 mb-3" role="search">
+                        <!-- Búsqueda: todo el ancho en celular, un tercio en computador. -->
+                        <div class="col-12 col-lg-4">
+                            <!-- Grupo de entrada. -->
+                            <div class="input-group">
+                                <!-- Lupa. -->
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <!-- Campo. -->
+                                <input type="search" class="form-control" placeholder="Nombre o código..." aria-label="Buscar producto">
+                            <!-- Cierra el grupo. -->
+                            </div>
+                        <!-- Cierra la columna. -->
+                        </div>
+                        <!-- Filtro de categoría. -->
+                        <div class="col-6 col-lg-3">
+                            <!-- Lista. -->
+                            <select class="form-select" aria-label="Filtrar por categoría">
+                                <!-- Por defecto. -->
+                                <option selected>Todas las categorías</option>
+                                <!-- Opción. -->
+                                <option>Tecnología</option>
+                                <!-- Opción. -->
+                                <option>Oficina</option>
+                                <!-- Opción. -->
+                                <option>Papelería</option>
+                            <!-- Cierra la lista. -->
+                            </select>
+                        <!-- Cierra la columna. -->
+                        </div>
+                        <!-- Filtro de subcategoría. -->
+                        <div class="col-6 col-lg-3">
+                            <!-- Lista. -->
+                            <select class="form-select" aria-label="Filtrar por subcategoría">
+                                <!-- Por defecto. -->
+                                <option selected>Todas las subcategorías</option>
+                                <!-- optgroup agrupa opciones bajo un título no seleccionable: así se ve la relación categoría → subcategoría. -->
+                                <optgroup label="Tecnología">
+                                    <!-- Subcategoría de Tecnología. -->
+                                    <option>Portátiles</option>
+                                    <!-- Subcategoría de Tecnología. -->
+                                    <option>Monitores</option>
+                                <!-- Cierra el grupo. -->
+                                </optgroup>
+                                <!-- Segundo grupo. -->
+                                <optgroup label="Oficina">
+                                    <!-- Subcategoría de Oficina. -->
+                                    <option>Sillas</option>
+                                    <!-- Subcategoría de Oficina. -->
+                                    <option>Escritorios</option>
+                                <!-- Cierra el grupo. -->
+                                </optgroup>
+                            <!-- Cierra la lista. -->
+                            </select>
+                        <!-- Cierra la columna. -->
+                        </div>
+                        <!-- Botón para limpiar filtros. -->
+                        <div class="col-12 col-lg-2">
+                            <!-- type="reset" devuelve todos los campos del formulario a su valor inicial (esto sí funciona sin programar). -->
+                            <button type="reset" class="btn btn-outline-secondary w-100"><i class="bi bi-x-circle me-1"></i>Limpiar</button>
+                        <!-- Cierra la columna. -->
+                        </div>
+                    <!-- Cierra los filtros. -->
+                    </form>
+
+                    <!-- Tabla de productos -->
+                    <!-- Desplazamiento en celular. -->
+                    <div class="table-responsive">
+                        <!-- Tabla. -->
+                        <table class="table table-hover align-middle">
+                            <!-- Encabezado. -->
+                            <thead class="table-light">
+                                <!-- Fila de títulos. -->
+                                <tr>
+                                    <!-- Imagen, nombre y código. -->
+                                    <th scope="col">Producto</th>
+                                    <!-- Categoría y subcategoría. -->
+                                    <th scope="col">Categoría</th>
+                                    <!-- Números a la derecha. -->
+                                    <th scope="col" class="text-end">Precio</th>
+                                    <!-- Inventario centrado. -->
+                                    <th scope="col" class="text-center">Stock</th>
+                                    <!-- Publicado o borrador. -->
+                                    <th scope="col">Estado</th>
+                                    <!-- Acciones. -->
+                                    <th scope="col" class="text-end">Acciones</th>
+                                <!-- Cierra la fila. -->
+                                </tr>
+                            <!-- Cierra el encabezado. -->
+                            </thead>
+                            <!-- Cuerpo. -->
+                            <tbody>
+                                <!-- Producto 1. -->
+                                <tr>
+                                    <!-- Celda compuesta. -->
+                                    <td>
+                                        <!-- Miniatura al lado del texto. -->
+                                        <div class="d-flex align-items-center gap-3">
+                                            <!-- Nuestra clase miniatura (en el sistema real iría un <img>). -->
+                                            <div class="miniatura"><i class="bi bi-laptop"></i></div>
+                                            <!-- Texto. -->
+                                            <div>
+                                                <!-- Nombre. -->
+                                                <div class="fw-semibold">Portátil Lenovo 14"</div>
+                                                <!-- Código interno (SKU = Stock Keeping Unit). -->
+                                                <div class="small text-secondary">SKU: TEC-POR-001</div>
+                                            <!-- Cierra el texto. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Celda de clasificación. -->
+                                    <td>
+                                        <!-- Categoría. -->
+                                        <div>Tecnología</div>
+                                        <!-- Subcategoría debajo, más pequeña. -->
+                                        <div class="small text-secondary">Portátiles</div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Precio alineado a la derecha. -->
+                                    <td class="text-end fw-semibold">$2.500.000</td>
+                                    <!-- Stock suficiente: verde. -->
+                                    <td class="text-center"><span class="badge text-bg-success">12</span></td>
+                                    <!-- Estado. -->
+                                    <td><span class="badge rounded-pill text-bg-success">Publicado</span></td>
+                                    <!-- Acciones. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Editar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalProducto" title="Editar"><i class="bi bi-pencil"></i></button>
+                                        <!-- Eliminar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                    <!-- Cierra las acciones. -->
+                                    </td>
+                                <!-- Cierra el producto 1. -->
+                                </tr>
+                                <!-- Producto 2. -->
+                                <tr>
+                                    <!-- Celda compuesta. -->
+                                    <td>
+                                        <!-- Flexbox. -->
+                                        <div class="d-flex align-items-center gap-3">
+                                            <!-- Miniatura. -->
+                                            <div class="miniatura"><i class="bi bi-display"></i></div>
+                                            <!-- Texto. -->
+                                            <div>
+                                                <!-- Nombre. -->
+                                                <div class="fw-semibold">Monitor 24" Full HD</div>
+                                                <!-- Código. -->
+                                                <div class="small text-secondary">SKU: TEC-MON-004</div>
+                                            <!-- Cierra el texto. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Clasificación. -->
+                                    <td>
+                                        <!-- Categoría. -->
+                                        <div>Tecnología</div>
+                                        <!-- Subcategoría. -->
+                                        <div class="small text-secondary">Monitores</div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Precio. -->
+                                    <td class="text-end fw-semibold">$780.000</td>
+                                    <!-- Stock bajo: amarillo. -->
+                                    <td class="text-center"><span class="badge text-bg-warning">3</span></td>
+                                    <!-- Estado. -->
+                                    <td><span class="badge rounded-pill text-bg-success">Publicado</span></td>
+                                    <!-- Acciones. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Editar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalProducto" title="Editar"><i class="bi bi-pencil"></i></button>
+                                        <!-- Eliminar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                    <!-- Cierra las acciones. -->
+                                    </td>
+                                <!-- Cierra el producto 2. -->
+                                </tr>
+                                <!-- Producto 3. -->
+                                <tr>
+                                    <!-- Celda compuesta. -->
+                                    <td>
+                                        <!-- Flexbox. -->
+                                        <div class="d-flex align-items-center gap-3">
+                                            <!-- Miniatura. -->
+                                            <div class="miniatura"><i class="bi bi-person-workspace"></i></div>
+                                            <!-- Texto. -->
+                                            <div>
+                                                <!-- Nombre. -->
+                                                <div class="fw-semibold">Silla ergonómica</div>
+                                                <!-- Código. -->
+                                                <div class="small text-secondary">SKU: OFI-SIL-002</div>
+                                            <!-- Cierra el texto. -->
+                                            </div>
+                                        <!-- Cierra el Flexbox. -->
+                                        </div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Clasificación. -->
+                                    <td>
+                                        <!-- Categoría. -->
+                                        <div>Oficina</div>
+                                        <!-- Subcategoría. -->
+                                        <div class="small text-secondary">Sillas</div>
+                                    <!-- Cierra la celda. -->
+                                    </td>
+                                    <!-- Precio. -->
+                                    <td class="text-end fw-semibold">$450.000</td>
+                                    <!-- Agotado: rojo. -->
+                                    <td class="text-center"><span class="badge text-bg-danger">0</span></td>
+                                    <!-- No visible para clientes. -->
+                                    <td><span class="badge rounded-pill text-bg-secondary">Borrador</span></td>
+                                    <!-- Acciones. -->
+                                    <td class="text-end text-nowrap">
+                                        <!-- Editar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalProducto" title="Editar"><i class="bi bi-pencil"></i></button>
+                                        <!-- Eliminar. -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                    <!-- Cierra las acciones. -->
+                                    </td>
+                                <!-- Cierra el producto 3. -->
+                                </tr>
+                            <!-- Cierra el cuerpo. -->
+                            </tbody>
+                        <!-- Cierra la tabla. -->
+                        </table>
+                    <!-- Cierra la envoltura. -->
+                    </div>
+
+                    <!-- Paginación -->
+                    <!-- Texto y paginación. -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <!-- Resumen. -->
+                        <small class="text-secondary">Mostrando 1 a 3 de 152 productos</small>
+                        <!-- Navegación. -->
+                        <nav aria-label="Paginación de productos">
+                            <!-- Paginación pequeña. -->
+                            <ul class="pagination pagination-sm mb-0">
+                                <!-- Deshabilitado. -->
+                                <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                                <!-- Página actual. -->
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                                <!-- Página 2. -->
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <!-- Página 3. -->
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <!-- Siguiente. -->
+                                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                            <!-- Cierra la lista. -->
+                            </ul>
+                        <!-- Cierra la navegación. -->
+                        </nav>
+                    <!-- Cierra la paginación. -->
+                    </div>
+                <!-- Cierra el cuerpo de la tarjeta. -->
+                </div>
+            <!-- Cierra la tarjeta. -->
+            </div>
+
+            <!-- Modal: crear / editar producto -->
+            <!-- Modal oculto. -->
+            <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="tituloModalProducto" aria-hidden="true">
+                <!-- Grande y con desplazamiento interno. -->
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <!-- Contenido. -->
+                    <div class="modal-content">
+                        <!-- Encabezado. -->
+                        <div class="modal-header">
+                            <!-- Título. -->
+                            <h2 class="modal-title fs-5" id="tituloModalProducto"><i class="bi bi-box-seam me-2"></i>Datos del producto</h2>
+                            <!-- Cerrar. -->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <!-- Cierra el encabezado. -->
+                        </div>
+                        <!-- Cuerpo. -->
+                        <div class="modal-body">
+                            <!-- Formulario en rejilla. -->
+                            <form class="row g-3">
+                                <!-- Un tercio. -->
+                                <div class="col-md-4">
+                                    <!-- Etiqueta con asterisco de obligatorio. -->
+                                    <label for="proCodigo" class="form-label">Código (SKU) <span class="text-danger">*</span></label>
+                                    <!-- text-uppercase muestra el texto en mayúsculas. -->
+                                    <input type="text" class="form-control text-uppercase" id="proCodigo" placeholder="TEC-POR-001" required>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Dos tercios. -->
+                                <div class="col-md-8">
+                                    <!-- Etiqueta. -->
+                                    <label for="proNombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                                    <!-- Campo obligatorio. -->
+                                    <input type="text" class="form-control" id="proNombre" placeholder="Ej: Portátil Lenovo 14 pulgadas" required>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="proCategoria" class="form-label">Categoría <span class="text-danger">*</span></label>
+                                    <!-- Lista de categorías. -->
+                                    <select class="form-select" id="proCategoria" required>
+                                        <!-- Opción guía. -->
+                                        <option value="" selected disabled>Seleccione…</option>
+                                        <!-- Opción. -->
+                                        <option>Tecnología</option>
+                                        <!-- Opción. -->
+                                        <option>Oficina</option>
+                                        <!-- Opción. -->
+                                        <option>Papelería</option>
+                                    <!-- Cierra la lista. -->
+                                    </select>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Mitad. -->
+                                <div class="col-md-6">
+                                    <!-- Etiqueta. -->
+                                    <label for="proSubcategoria" class="form-label">Subcategoría <span class="text-danger">*</span></label>
+                                    <!-- Lista de subcategorías. En el sistema real se llenará según la categoría elegida (con JavaScript). -->
+                                    <select class="form-select" id="proSubcategoria" required>
+                                        <!-- Mensaje guía. -->
+                                        <option value="" selected disabled>Primero elija una categoría</option>
+                                        <!-- Opción. -->
+                                        <option>Portátiles</option>
+                                        <!-- Opción. -->
+                                        <option>Monitores</option>
+                                    <!-- Cierra la lista. -->
+                                    </select>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Un tercio. -->
+                                <div class="col-md-4">
+                                    <!-- Etiqueta. -->
+                                    <label for="proPrecio" class="form-label">Precio de venta <span class="text-danger">*</span></label>
+                                    <!-- Grupo para pegar el símbolo de moneda. -->
+                                    <div class="input-group">
+                                        <!-- Prefijo “$”. -->
+                                        <span class="input-group-text">$</span>
+                                        <!-- type="number": solo números. min="0" no permite negativos y step="100" hace que las flechas sumen de 100 en 100. -->
+                                        <input type="number" class="form-control" id="proPrecio" min="0" step="100" placeholder="0" required>
+                                        <!-- Sufijo con la moneda. -->
+                                        <span class="input-group-text">COP</span>
+                                    <!-- Cierra el grupo. -->
+                                    </div>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Medio ancho en celular. -->
+                                <div class="col-6 col-md-4">
+                                    <!-- Etiqueta. -->
+                                    <label for="proStock" class="form-label">Stock actual</label>
+                                    <!-- value="0" es el valor inicial. -->
+                                    <input type="number" class="form-control" id="proStock" min="0" value="0">
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Medio ancho en celular. -->
+                                <div class="col-6 col-md-4">
+                                    <!-- Etiqueta. -->
+                                    <label for="proStockMin" class="form-label">Stock mínimo</label>
+                                    <!-- Cantidad que dispara la alerta amarilla. -->
+                                    <input type="number" class="form-control" id="proStockMin" min="0" value="5" aria-describedby="ayudaStockMin">
+                                    <!-- Texto de ayuda. -->
+                                    <div id="ayudaStockMin" class="form-text">Por debajo de este valor se mostrará en amarillo.</div>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Todo el ancho. -->
+                                <div class="col-12">
+                                    <!-- Etiqueta. -->
+                                    <label for="proDescripcion" class="form-label">Descripción</label>
+                                    <!-- Área de texto. -->
+                                    <textarea class="form-control" id="proDescripcion" rows="3" placeholder="Características principales del producto"></textarea>
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Dos tercios. -->
+                                <div class="col-md-8">
+                                    <!-- Etiqueta. -->
+                                    <label for="proImagen" class="form-label">Imagen</label>
+                                    <!-- type="file" abre el explorador de archivos; accept solo permite imágenes PNG y JPG. -->
+                                    <input type="file" class="form-control" id="proImagen" accept="image/png, image/jpeg">
+                                <!-- Cierra la columna. -->
+                                </div>
+                                <!-- Un tercio; Flexbox alinea el contenido abajo, a la altura del campo de imagen. -->
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <!-- Interruptor. -->
+                                    <div class="form-check form-switch mb-2">
+                                        <!-- Encendido. -->
+                                        <input class="form-check-input" type="checkbox" role="switch" id="proPublicado" checked>
+                                        <!-- Etiqueta. -->
+                                        <label class="form-check-label" for="proPublicado">Publicado en la tienda</label>
+                                    <!-- Cierra el interruptor. -->
+                                    </div>
+                                <!-- Cierra la columna. -->
+                                </div>
+                            <!-- Cierra el formulario. -->
+                            </form>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="modal-footer">
+                            <!-- Cancelar. -->
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Guardar. -->
+                            <button type="button" class="btn btn-sena" data-bs-dismiss="modal"><i class="bi bi-save me-1"></i>Guardar producto</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal. -->
+            </div>
+
+            <!-- Modal: confirmar eliminación -->
+            <!-- Modal. -->
+            <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="tituloModalEliminar" aria-hidden="true">
+                <!-- Pequeño y centrado. -->
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <!-- Contenido. -->
+                    <div class="modal-content">
+                        <!-- Cuerpo. -->
+                        <div class="modal-body text-center p-4">
+                            <!-- Ícono. -->
+                            <i class="bi bi-exclamation-triangle text-danger display-5"></i>
+                            <!-- Pregunta. -->
+                            <h2 class="h5 mt-3" id="tituloModalEliminar">¿Eliminar este producto?</h2>
+                            <!-- Consecuencia. -->
+                            <p class="text-secondary small mb-0">Esta acción no se puede deshacer.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="modal-footer justify-content-center border-0 pt-0">
+                            <!-- Cancelar. -->
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Confirmar. -->
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sí, eliminar</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal. -->
+            </div>
+<!-- FIN CONTENIDO -->
+        <!-- Cierra el contenido. -->
+        </main>
+    <!-- Cierra la zona derecha. -->
+    </div>
+
+    <!-- JavaScript de Bootstrap: necesario para el menú deslizable, el desplegable del usuario y los modales. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Cierra el cuerpo. -->
+</body>
+<!-- Cierra el documento. -->
+</html>

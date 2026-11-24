@@ -1,0 +1,451 @@
+<!DOCTYPE html> <!-- Documento HTML5. -->
+<!-- Raíz en español. -->
+<html lang="es">
+<!-- Abre la cabecera. -->
+<head>
+    <!-- Codificación UTF-8. -->
+    <meta charset="UTF-8">
+    <!-- Diseño adaptable. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la pestaña. Cambia en cada módulo. -->
+    <title>Categorías | TiendaSENA</title>
+    <!-- CSS de Bootstrap. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Íconos. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Nuestros estilos (después de Bootstrap). -->
+    <link href="css/estilos.css" rel="stylesheet">
+<!-- Cierra la cabecera. -->
+</head>
+<!-- Fondo gris muy claro para que las tarjetas blancas resalten. -->
+<body class="bg-body-tertiary">
+
+    <!-- ===================== MENÚ LATERAL ===================== -->
+    <!-- offcanvas-lg: en pantallas menores a lg es un panel oculto que se desliza; desde lg se muestra normal. offcanvas-start lo hace salir por la izquierda. sidebar es nuestra clase. El id lo usa el botón que lo abre. -->
+    <aside class="offcanvas-lg offcanvas-start sidebar" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
+        <!-- Encabezado del panel; Bootstrap solo lo muestra en celular. -->
+        <div class="offcanvas-header border-bottom border-secondary">
+            <!-- Nombre del sistema en el panel móvil. -->
+            <h5 class="offcanvas-title" id="tituloMenu"><i class="bi bi-shop me-2"></i>TiendaSENA</h5>
+            <!-- Botón “X” blanco que cierra el panel. data-bs-target indica cuál panel cerrar. -->
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
+        <!-- Cierra el encabezado móvil. -->
+        </div>
+        <!-- Cuerpo del menú: Flexbox en columna para apilar logo, enlaces y botón de salida. -->
+        <div class="offcanvas-body d-flex flex-column p-3">
+            <!-- Logo que solo se ve en computador (d-none d-lg-flex): en celular ya está en el encabezado del panel. Al hacer clic vuelve al dashboard. -->
+            <a href="dashboard.html" class="d-none d-lg-flex align-items-center mb-3 text-white text-decoration-none fs-5 fw-bold">
+                <!-- Ícono verde y nombre. -->
+                <i class="bi bi-shop me-2 text-sena"></i> TiendaSENA
+            <!-- Cierra el logo. -->
+            </a>
+            <!-- Lista de navegación en columna (flex-column). nav-pills da forma de “píldora” al enlace activo. mb-auto empuja lo que sigue hasta el fondo. -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <!-- Enlace al dashboard. active lo resalta en verde y aria-current="page" avisa a los lectores de pantalla que es la página actual. **En cada módulo, el active pasa a su propio enlace.** -->
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <!-- Enlace al módulo de usuarios (clase 5). -->
+                <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-people me-2"></i>Usuarios</a></li>
+                <!-- Enlace a categorías (clase 6). -->
+                <li class="nav-item"><a href="categorias.html" class="nav-link active" aria-current="page"><i class="bi bi-tags me-2"></i>Categorías</a></li>
+                <!-- Enlace a subcategorías (clase 7). -->
+                <li class="nav-item"><a href="subcategorias.html" class="nav-link"><i class="bi bi-diagram-3 me-2"></i>Subcategorías</a></li>
+                <!-- Enlace a productos (clase 8). -->
+                <li class="nav-item"><a href="productos.html" class="nav-link"><i class="bi bi-box-seam me-2"></i>Productos</a></li>
+            <!-- Cierra la lista de navegación. -->
+            </ul>
+            <!-- Línea divisoria. -->
+            <hr>
+            <!-- Botón que vuelve al login (index.html): así “se cierra la sesión” en el prototipo. -->
+            <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
+        <!-- Cierra el cuerpo del menú. -->
+        </div>
+    <!-- Cierra el menú lateral. -->
+    </aside>
+
+    <!-- ===================== ZONA DERECHA ===================== -->
+    <!-- Nuestra clase contenido aplica el margin-left en computador. -->
+    <div class="contenido">
+
+        <!-- Barra superior -->
+        <!-- Barra blanca con borde inferior. sticky-top la deja pegada arriba al hacer scroll. -->
+        <nav class="navbar bg-white border-bottom px-3 sticky-top">
+            <!-- Botón para abrir el menú en celular. d-lg-none lo oculta en computador (allá el menú siempre se ve). data-bs-toggle="offcanvas" + data-bs-target="#menuLateral" abren el panel. -->
+            <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menú">
+                <!-- Ícono de “hamburguesa”. -->
+                <i class="bi bi-list"></i>
+            <!-- Cierra el botón. -->
+            </button>
+            <!-- Texto de la barra; se oculta en celulares muy pequeños (d-none d-sm-inline). -->
+            <span class="navbar-text fw-semibold d-none d-sm-inline">Panel de administración</span>
+            <!-- Menú desplegable del usuario; ms-auto lo empuja a la derecha. -->
+            <div class="dropdown ms-auto">
+                <!-- Botón que abre el desplegable. dropdown-toggle dibuja la flechita; data-bs-toggle="dropdown" lo hace funcionar. -->
+                <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Ícono de usuario. -->
+                    <i class="bi bi-person-circle fs-5"></i>
+                    <!-- Nombre del usuario, visible desde tablet. -->
+                    <span class="d-none d-md-inline">Admin SENA</span>
+                <!-- Cierra el botón. -->
+                </button>
+                <!-- Lista de opciones. dropdown-menu-end la alinea a la derecha para que no se salga de la pantalla. -->
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <!-- Encabezado no clicable dentro del menú. -->
+                    <li><h6 class="dropdown-header">admin@sena.edu.co</h6></li>
+                    <!-- Opción del menú (pantalla aún no construida). -->
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
+                    <!-- Línea separadora. -->
+                    <li><hr class="dropdown-divider"></li>
+                    <!-- Otra forma de salir, en rojo (text-danger). -->
+                    <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a></li>
+                <!-- Cierra la lista. -->
+                </ul>
+            <!-- Cierra el desplegable. -->
+            </div>
+        <!-- Cierra la barra superior. -->
+        </nav>
+
+        <!-- Contenido de la página -->
+        <!-- Relleno 3 en celular y 4 desde tablet. -->
+        <main class="p-3 p-md-4">
+<!-- INICIO CONTENIDO -->
+            <!-- Encabezado del módulo -->
+            <!-- Flexbox con salto de línea en celular. -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                <!-- Bloque del título. -->
+                <div>
+                    <!-- Título. -->
+                    <h1 class="h3 mb-1">Gestión de categorías</h1>
+                    <!-- Migas de pan. -->
+                    <nav aria-label="breadcrumb">
+                        <!-- Lista de migas. -->
+                        <ol class="breadcrumb mb-0 small">
+                            <!-- Enlace al dashboard. -->
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <!-- Página actual. -->
+                            <li class="breadcrumb-item active" aria-current="page">Categorías</li>
+                        <!-- Cierra la lista. -->
+                        </ol>
+                    <!-- Cierra las migas. -->
+                    </nav>
+                <!-- Cierra el bloque. -->
+                </div>
+                <!-- Abre el modal #modalCategoria. -->
+                <button type="button" class="btn btn-sena" data-bs-toggle="modal" data-bs-target="#modalCategoria">
+                    <!-- Ícono “+” y texto. -->
+                    <i class="bi bi-plus-lg me-1"></i> Nueva categoría
+                <!-- Cierra el botón. -->
+                </button>
+            <!-- Cierra el encabezado. -->
+            </div>
+
+            <!-- Buscador -->
+            <!-- Fila de la rejilla. -->
+            <div class="row mb-4">
+                <!-- El buscador no ocupa todo el ancho en pantallas grandes. -->
+                <div class="col-md-6 col-lg-4">
+                    <!-- Grupo de entrada. -->
+                    <div class="input-group">
+                        <!-- Lupa con fondo blanco. -->
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <!-- Campo de búsqueda. -->
+                        <input type="search" class="form-control" placeholder="Buscar categoría..." aria-label="Buscar categoría">
+                    <!-- Cierra el grupo. -->
+                    </div>
+                <!-- Cierra la columna. -->
+                </div>
+            <!-- Cierra la fila. -->
+            </div>
+
+            <!-- Rejilla de tarjetas -->
+            <!-- 1 tarjeta por fila en celular, 2 en tablet y 3 en pantallas grandes. g-3 = espacio entre ellas. -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
+                <!-- Categoría 1. -->
+                <div class="col">
+                    <!-- Tarjeta; h-100 iguala las alturas de la fila. -->
+                    <div class="card border-0 shadow-sm h-100">
+                        <!-- Cuerpo. -->
+                        <div class="card-body">
+                            <!-- Fila superior: ícono a la izquierda, estado a la derecha. -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <!-- Reutilizamos icono-kpi del dashboard. -->
+                                <div class="icono-kpi bg-success-subtle text-success"><i class="bi bi-laptop"></i></div>
+                                <!-- Estado. -->
+                                <span class="badge rounded-pill text-bg-success">Activa</span>
+                            <!-- Cierra la fila superior. -->
+                            </div>
+                            <!-- Nombre de la categoría. -->
+                            <h2 class="h5 card-title">Tecnología</h2>
+                            <!-- Descripción. -->
+                            <p class="card-text text-secondary small mb-0">Computadores, monitores, periféricos y accesorios.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie: enlace a la izquierda y acciones a la derecha. -->
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <!-- Enlace entre módulos: lleva a las subcategorías de esta categoría. -->
+                            <a href="subcategorias.html" class="small text-decoration-none"><i class="bi bi-diagram-3 me-1"></i>4 subcategorías</a>
+                            <!-- Acciones sin salto de línea. -->
+                            <div class="text-nowrap">
+                                <!-- Editar: abre el mismo modal del formulario. -->
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <!-- Eliminar: abre la confirmación. -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            <!-- Cierra las acciones. -->
+                            </div>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra la tarjeta. -->
+                    </div>
+                <!-- Cierra la categoría 1. -->
+                </div>
+                <!-- Categoría 2 (misma estructura). -->
+                <div class="col">
+                    <!-- Tarjeta. -->
+                    <div class="card border-0 shadow-sm h-100">
+                        <!-- Cuerpo. -->
+                        <div class="card-body">
+                            <!-- Fila superior. -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <!-- Ícono de maletín. -->
+                                <div class="icono-kpi bg-primary-subtle text-primary"><i class="bi bi-briefcase"></i></div>
+                                <!-- Estado. -->
+                                <span class="badge rounded-pill text-bg-success">Activa</span>
+                            <!-- Cierra la fila. -->
+                            </div>
+                            <!-- Nombre. -->
+                            <h2 class="h5 card-title">Oficina</h2>
+                            <!-- Descripción. -->
+                            <p class="card-text text-secondary small mb-0">Muebles y elementos para espacios de trabajo.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <!-- Enlace a subcategorías. -->
+                            <a href="subcategorias.html" class="small text-decoration-none"><i class="bi bi-diagram-3 me-1"></i>3 subcategorías</a>
+                            <!-- Acciones. -->
+                            <div class="text-nowrap">
+                                <!-- Editar. -->
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <!-- Eliminar. -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            <!-- Cierra las acciones. -->
+                            </div>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra la tarjeta. -->
+                    </div>
+                <!-- Cierra la categoría 2. -->
+                </div>
+                <!-- Categoría 3. -->
+                <div class="col">
+                    <!-- Tarjeta. -->
+                    <div class="card border-0 shadow-sm h-100">
+                        <!-- Cuerpo. -->
+                        <div class="card-body">
+                            <!-- Fila superior. -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <!-- Ícono de papelería. -->
+                                <div class="icono-kpi bg-warning-subtle text-warning-emphasis"><i class="bi bi-pencil-square"></i></div>
+                                <!-- Estado. -->
+                                <span class="badge rounded-pill text-bg-success">Activa</span>
+                            <!-- Cierra la fila. -->
+                            </div>
+                            <!-- Nombre. -->
+                            <h2 class="h5 card-title">Papelería</h2>
+                            <!-- Descripción. -->
+                            <p class="card-text text-secondary small mb-0">Cuadernos, lapiceros, carpetas y útiles.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <!-- Enlace a subcategorías. -->
+                            <a href="subcategorias.html" class="small text-decoration-none"><i class="bi bi-diagram-3 me-1"></i>5 subcategorías</a>
+                            <!-- Acciones. -->
+                            <div class="text-nowrap">
+                                <!-- Editar. -->
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <!-- Eliminar. -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            <!-- Cierra las acciones. -->
+                            </div>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra la tarjeta. -->
+                    </div>
+                <!-- Cierra la categoría 3. -->
+                </div>
+                <!-- Categoría 4 (inactiva). -->
+                <div class="col">
+                    <!-- opacity-75 la ve un poco transparente: comunica que está inactiva. -->
+                    <div class="card border-0 shadow-sm h-100 opacity-75">
+                        <!-- Cuerpo. -->
+                        <div class="card-body">
+                            <!-- Fila superior. -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <!-- Ícono gris. -->
+                                <div class="icono-kpi bg-secondary-subtle text-secondary"><i class="bi bi-house"></i></div>
+                                <!-- Estado inactivo en gris. -->
+                                <span class="badge rounded-pill text-bg-secondary">Inactiva</span>
+                            <!-- Cierra la fila. -->
+                            </div>
+                            <!-- Nombre. -->
+                            <h2 class="h5 card-title">Hogar</h2>
+                            <!-- Descripción. -->
+                            <p class="card-text text-secondary small mb-0">Electrodomésticos pequeños y decoración.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <!-- Enlace. -->
+                            <a href="subcategorias.html" class="small text-decoration-none"><i class="bi bi-diagram-3 me-1"></i>2 subcategorías</a>
+                            <!-- Acciones. -->
+                            <div class="text-nowrap">
+                                <!-- Editar. -->
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria" title="Editar"><i class="bi bi-pencil"></i></button>
+                                <!-- Eliminar. -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar" title="Eliminar"><i class="bi bi-trash"></i></button>
+                            <!-- Cierra las acciones. -->
+                            </div>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra la tarjeta. -->
+                    </div>
+                <!-- Cierra la categoría 4. -->
+                </div>
+                <!-- Última celda: la tarjeta para agregar. -->
+                <div class="col">
+                    <!-- Un <button> con aspecto de tarjeta (card + nuestra tarjeta-agregar). Flexbox en columna centra el contenido. También abre el modal. -->
+                    <button type="button" class="card tarjeta-agregar w-100 h-100 d-flex flex-column align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#modalCategoria">
+                        <!-- Ícono “+” grande. -->
+                        <i class="bi bi-plus-circle fs-1"></i>
+                        <!-- Texto. -->
+                        <span class="fw-semibold mt-2">Agregar categoría</span>
+                    <!-- Cierra el botón-tarjeta. -->
+                    </button>
+                <!-- Cierra la celda. -->
+                </div>
+            <!-- Cierra la rejilla. -->
+            </div>
+
+            <!-- Modal: crear / editar categoría -->
+            <!-- Modal oculto. -->
+            <div class="modal fade" id="modalCategoria" tabindex="-1" aria-labelledby="tituloModalCategoria" aria-hidden="true">
+                <!-- Tamaño normal, centrado. -->
+                <div class="modal-dialog modal-dialog-centered">
+                    <!-- Contenido. -->
+                    <div class="modal-content">
+                        <!-- Encabezado. -->
+                        <div class="modal-header">
+                            <!-- Título. -->
+                            <h2 class="modal-title fs-5" id="tituloModalCategoria"><i class="bi bi-tag me-2"></i>Datos de la categoría</h2>
+                            <!-- Cerrar. -->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <!-- Cierra el encabezado. -->
+                        </div>
+                        <!-- Cuerpo. -->
+                        <div class="modal-body">
+                            <!-- Formulario de una sola columna. -->
+                            <form>
+                                <!-- Grupo con margen inferior. -->
+                                <div class="mb-3">
+                                    <!-- Etiqueta. -->
+                                    <label for="catNombre" class="form-label">Nombre</label>
+                                    <!-- maxlength="50" impide escribir más de 50 caracteres. -->
+                                    <input type="text" class="form-control" id="catNombre" placeholder="Ej: Tecnología" maxlength="50" required>
+                                <!-- Cierra el grupo. -->
+                                </div>
+                                <!-- Grupo. -->
+                                <div class="mb-3">
+                                    <!-- Etiqueta. -->
+                                    <label for="catDescripcion" class="form-label">Descripción</label>
+                                    <!-- Área de texto de 3 líneas con estilo form-control. -->
+                                    <textarea class="form-control" id="catDescripcion" rows="3" placeholder="¿Qué productos incluye?"></textarea>
+                                <!-- Cierra el grupo. -->
+                                </div>
+                                <!-- Grupo de selección de color. -->
+                                <div class="mb-3">
+                                    <!-- Etiqueta general (d-block la pone en su propia línea). -->
+                                    <span class="form-label d-block">Color de la tarjeta</span>
+                                    <!-- btn-check oculta el botón de opción (radio)… Todos comparten name="catColor", así solo uno puede estar marcado. -->
+                                    <input type="radio" class="btn-check" name="catColor" id="colorVerde" checked>
+                                    <!-- …y su label se ve como botón. Al marcarlo, el botón se rellena. -->
+                                    <label class="btn btn-outline-success btn-sm" for="colorVerde">Verde</label>
+                                    <!-- Segunda opción. -->
+                                    <input type="radio" class="btn-check" name="catColor" id="colorAzul">
+                                    <!-- Botón azul. -->
+                                    <label class="btn btn-outline-primary btn-sm" for="colorAzul">Azul</label>
+                                    <!-- Tercera opción. -->
+                                    <input type="radio" class="btn-check" name="catColor" id="colorAmarillo">
+                                    <!-- Botón amarillo. -->
+                                    <label class="btn btn-outline-warning btn-sm" for="colorAmarillo">Amarillo</label>
+                                <!-- Cierra el grupo. -->
+                                </div>
+                                <!-- Interruptor de estado. -->
+                                <div class="form-check form-switch">
+                                    <!-- Encendido por defecto. -->
+                                    <input class="form-check-input" type="checkbox" role="switch" id="catActiva" checked>
+                                    <!-- Etiqueta. -->
+                                    <label class="form-check-label" for="catActiva">Categoría activa</label>
+                                <!-- Cierra el interruptor. -->
+                                </div>
+                            <!-- Cierra el formulario. -->
+                            </form>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie. -->
+                        <div class="modal-footer">
+                            <!-- Cancelar. -->
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Guardar (en el prototipo solo cierra). -->
+                            <button type="button" class="btn btn-sena" data-bs-dismiss="modal"><i class="bi bi-save me-1"></i>Guardar</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal. -->
+            </div>
+
+            <!-- Modal: confirmar eliminación -->
+            <!-- Modal de confirmación. -->
+            <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="tituloModalEliminar" aria-hidden="true">
+                <!-- Pequeño y centrado. -->
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <!-- Contenido. -->
+                    <div class="modal-content">
+                        <!-- Cuerpo centrado. -->
+                        <div class="modal-body text-center p-4">
+                            <!-- Ícono de advertencia. -->
+                            <i class="bi bi-exclamation-triangle text-danger display-5"></i>
+                            <!-- Pregunta. -->
+                            <h2 class="h5 mt-3" id="tituloModalEliminar">¿Eliminar esta categoría?</h2>
+                            <!-- Avisa la consecuencia en cadena (relación categoría → subcategoría). -->
+                            <p class="text-secondary small mb-0">También se eliminarán sus subcategorías.</p>
+                        <!-- Cierra el cuerpo. -->
+                        </div>
+                        <!-- Pie centrado. -->
+                        <div class="modal-footer justify-content-center border-0 pt-0">
+                            <!-- Cancelar. -->
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Confirmar. -->
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sí, eliminar</button>
+                        <!-- Cierra el pie. -->
+                        </div>
+                    <!-- Cierra el contenido. -->
+                    </div>
+                <!-- Cierra el diálogo. -->
+                </div>
+            <!-- Cierra el modal. -->
+            </div>
+<!-- FIN CONTENIDO -->
+        <!-- Cierra el contenido. -->
+        </main>
+    <!-- Cierra la zona derecha. -->
+    </div>
+
+    <!-- JavaScript de Bootstrap: necesario para el menú deslizable, el desplegable del usuario y los modales. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Cierra el cuerpo. -->
+</body>
+<!-- Cierra el documento. -->
+</html>
