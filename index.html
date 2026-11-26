@@ -1,0 +1,73 @@
+<!--
+|=====================|      APUNTE TECNICO      |=====================|
+  Si uno coloca el simbolo [!] y se presiona la tecla [TAB], crea la estructura principal de HTML.
+|======================================================================|
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+|=====================|      APUNTE TECNICO      |=====================|
+  Ayuda a ajustar la pagina a las dimensiones del navegador.
+|======================================================================|
+-->
+    <title>Login | ATTENDX</title>
+    <link href="css/estilos.css" rel="stylesheet"><!--llama los estilos personalizados-->
+</head>
+<body class="login-fondo">
+
+    <main class="login-card">
+<!--
+|=====================|      APUNTE TECNICO      |=====================|
+  La etiqueta <main> es el contenido principal de la pagina.
+|======================================================================|
+-->
+        <header class="login-encabezado">
+<!--
+|=====================|      APUNTE TECNICO      |=====================|
+  La etiqueta <header> es el encabezado del login
+|======================================================================|
+-->
+          <!--Icono de la tienda-->
+          <i class="bi bi-shop display-4 text-sena"></i>
+            <h1 class="h3 fw-bold">ATTENDX</h1>
+            <p class="text-secondary mb-0">Ingresa tus credenciales para continuar</p>
+
+        </header>
+        <form action="dashboard.html" method="get">
+<!--
+|=====================|      APUNTE TECNICO*      |=====================|
+  Form permite crear el contenido de un formulario cuando se envia nos lleva a la ruta, el method nos envia la informacion con get.
+|======================================================================|
+-->
+        <div class="form-floating mb-3"><!--Agrupar un contenido e nun contenedor.-->
+            <input type="email" class="form-control" id="correo" placeholder="correo@dominio.com" required><!---type obliga que tenga el @, placeholder es el texto de ejemplo, el required es un campo obligatorio.-->
+            <label for="correo"><i class="bi bi-envelope me-1"></i> Correo Electronico</label><!--Es una etiqueta de texto que con el for conecta con el input-->
+        </div>
+
+        <div class="fors-floating mb-3">
+            <input type="password" class="form-control" id="clave" placeholder="Minimo 6 carecteres" minlength="6" required><!---tpye=password oculta lo que escribe, minlength=6 exige al menos 6 carecteres-->
+            <label for="clave"></label><i class="bi bi-lock nm-1"></i>Contraseña</label>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="fors-check">
+            <input class="fors-check-input" type="checkbox" id="recordar"><!--type checkbox es una casilla de verificacion-->
+            <label class="form-check-label" for="recordar">Recordar mis credenciales</label>
+        </div>
+        <a href="#" class="small text-decoration-none">Olvido su contraseña</a>
+        </div>
+
+        <button type="submit" class="btn btn-sena w-100 py-2 fw-semibold">
+          <i class="bi bi-box-arrow-in-right me-1"></i>Ingresar
+        </button><!--Envia el formulario antes revisar los campos required email y minlengt-->
+        </form><!--Cierra el formulario-->
+
+        <p class="login-pie">¿No tienes cuenta? <a href="registro.html" class="text-decoration-none">Registrate</a></p>
+        <footer class="login-pie"> ATTENDX @ 2026 All Rights Reserved</footer><!--pie de pagina-->
+
+    </main>
+</body>
+</html>
