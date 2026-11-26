@@ -207,7 +207,6 @@
                 <div class="row g-0" id="calendar">
                     <div id="horas-col" style="width: 48px; flex: 0 0 48px;"></div>
                     <div class="col cal-col" id="cal-col-monday"></div>
-                    <div class="col cal-col" id="cal-col-monday"></div>
                     <div class="col cal-col" id="cal-col-tuesday"></div>
                     <div class="col cal-col" id="cal-col-wednesday"></div>
                     <div class="col cal-col" id="cal-col-thursday"></div>
@@ -378,6 +377,136 @@
             contenedorHoras.appendChild(celdaHora);
         }
     }
+</script>
+<script>
+    const CLAVE_CLASES = 'attendx_horarios';
+
+    const diasCalendario = {
+        lunes: 'cal-col-monday',
+        martes: 'cal-col-tuesday',
+        miercoles: 'cal-col-wednesday',
+        jueves: 'cal-col-thursday',
+        viernes: 'cal-col-friday',
+        sabado: 'cal-col-saturday',
+        domingo: 'cal-col-sunday'
+    };
+
+    function convertirAMinutos(hora) {
+        const [horas, minutos] = hora.split(':').map(Number);
+        return (horas * 60) + minutos;
+    }
+
+    function dibujarClase(clase) {
+        clase.dias.forEach(function (dia) {
+            const columna = document.getElementById(diasCalendario[dia]);
+            if (!columna) return;
+
+            const inicio = convertirAMinutos(clase.horaInicio);
+            const fin = convertirAMinutos(clase.horaFinal);
+            const altoPorMinuto = 60 / 60;
+
+            const bloque = document.createElement('div');
+            bloque.className = 'clase-calendario';
+            bloque.style.top = ((inicio - (6 * 60)) * altoPorMinuto) + 'px';
+            bloque.style.height = Math.max((fin - inicio) * altoPorMinuto, 48) + 'px';
+            bloque.innerHTML =
+                '<strong>' + escaparHTML(clase.nombre) + '</strong>' +
+                '<small>' + escaparHTML(clase.horaInicio) + ' - ' + escaparHTML(clase.horaFinal) + '</small>' +
+                (clase.ubicacion ? '<small>' + escaparHTML(clase.ubicacion) + '</small>' : '');
+
+            columna.appendChild(bloque);
+        });
+    }
+
+    function escaparHTML(texto) {
+        const elemento = document.createElement('span');
+        elemento.textContent = texto || '';
+        return elemento.innerHTML;
+    }
+
+    function obtenerClasesGuardadas() {
+        try {
+            return JSON.parse(localStorage.getItem(CLAVE_CLASES)) || [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function guardarClases(clases) {
+        localStorage.setItem(CLAVE_CLASES, JSON.stringify(clases));
+    }
+
+    function limpiarCalendario() {
+        Object.values(diasCalendario).forEach(function (id) {
+            const columna = document.getElementById(id);
+            if (columna) columna.querySelectorAll('.clase-calendario').forEach(function (bloque) {
+                bloque.remove();
+            });
+        });
+    }
+
+    function renderizarClases() {
+        limpiarCalendario();
+        obtenerClasesGuardadas().forEach(dibujarClase);
+    }
+
+    window.saveClass = function () {
+        const nombre = document.getElementById('add-class-name').value.trim();
+        const horaInicio = document.getElementById('hora-inicio').value;
+        const horaFinal = document.getElementById('hora-final').value;
+
+        const dias = [];
+        ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'].forEach(function (dia) {
+            const checkbox = document.getElementById('dia-' + dia);
+            if (checkbox?.checked) dias.push(dia);
+        });
+
+        if (!nombre) {
+            alert('Ingresa el nombre de la clase.');
+            document.getElementById('add-class-name').focus();
+            return;
+        }
+
+        if (dias.length === 0) {
+            alert('Selecciona al menos un día.');
+            return;
+        }
+
+        if (!horaInicio || !horaFinal) {
+            alert('Selecciona la hora inicial y la hora final.');
+            return;
+        }
+
+        if (convertirAMinutos(horaFinal) <= convertirAMinutos(horaInicio)) {
+            alert('La hora final debe ser posterior a la hora inicial.');
+            return;
+        }
+
+        if (convertirAMinutos(horaInicio) < 360 || convertirAMinutos(horaFinal) > 1320) {
+            alert('Las clases deben estar entre las 6:00 AM y las 10:00 PM.');
+            return;
+        }
+
+        const clase = {
+            nombre: nombre,
+            dias: dias,
+            horaInicio: horaInicio,
+            horaFinal: horaFinal,
+            ubicacion: document.getElementById('add-class-ubicacion').value.trim(),
+            instructor: document.getElementById('add-class-instructor').value.trim(),
+            notas: document.getElementById('add-class-notas').value.trim()
+        };
+
+        const clases = obtenerClasesGuardadas();
+        clases.push(clase);
+        guardarClases(clases);
+        renderizarClases();
+
+        document.getElementById('add-class-form').reset();
+        alert('Clase añadida al calendario.');
+    };
+
+    renderizarClases();
 </script>
 </body>
 </html>
