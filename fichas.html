@@ -16,40 +16,38 @@
     <!--|==============| MENÚ LATERAL |==============|-->
     <aside class="offcanvas-lg offcanvas-start sidebar" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
         <div class="offcanvas-header border-bottom border-secondary">
-            <h5 class="offcanvas-title" id="tituloMenu"><i class="bi bi-shop me-2"></i>TiendaSENA</h5>
+            <h5 class="offcanvas-title" id="tituloMenu"><i class="bi bi-qr-code-scan me-2"></i>ATTENDX</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column p-3">
             <a href="dashboard.html" class="d-none d-lg-flex align-items-center mb-3 text-white text-decoration-none fs-5 fw-bold">
-                <i class="bi bi-shop me-2 text-sena"></i> TiendaSENA
+                <i class="bi bi-qr-code-scan me-2 text-sena"></i> ATTENDX
             </a>
-            <!-- Lista de navegación en columna (flex-column). nav-pills da forma de “píldora” al enlace activo. mb-auto empuja lo que sigue hasta el fondo. -->
             <ul class="nav nav-pills flex-column mb-auto">
-                <!--Modulo "DASHBOARD"-->
-                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <!--Modulo "INICIO"-->
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-house me-2"></i>Inicio</a></li>
                 <!--Modulo "USUARIOS"-->
                 <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-people me-2"></i>Usuarios</a></li>
                 <!--Modulo "APRENDICES"-->
                 <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-backpack3 me-2"></i>Aprendices</a></li>
-                <!--Modulo "FICHAS"-->
-                <li class="nav-item"><a href="fichas.html" class="nav-link"><i class="bi bi-card-heading me-2"></i>Fichas</a></li>
+                <!--Modulo "FICHAS" y activo para resaltar en amarillo-->
+                <li class="nav-item"><a href="fichas.html" class="nav-link active" aria-current>⮞ <i class="bi bi-journals me-2"></i>Fichas</a></li>
                 <!--Modulo "HORARIOS"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-calendar-week me-2"></i>Horarios</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-calendar-week me-2"></i>Horarios</a></li>
                 <!--Modulo "ASISTENCIA QR"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-hand-index me-2"></i>Asistencia QR</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-hand-index me-2"></i>Asistencia QR</a></li>
                 <!--Modulo "JUSTIFICACIONES"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-check2-all me-2"></i>Justificaciones</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-check2-all me-2"></i>Justificaciones</a></li>
                 <!--Modulo "COMPETENCIAS"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-box-seam me-2"></i>Competencias</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-boxes me-2"></i>Competencias</a></li>
                 <!--Modulo "RESULTADOS"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-box-seam me-2"></i>Resultados</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-clipboard-check me-2"></i>Resultados</a></li>
                 <!--Modulo "NOTAS"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-box-seam me-2"></i>Notas</a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-feather me-2"></i>Notas</a></li>
                 <!--Modulo "REPORTES"-->
-                <li class="nav-item"><a href="" class="nav-link active" aria-current="page"><i class="bi bi-box-seam me-2"></i>Reportes</a></li>
-            <!-- Cierra la lista de navegación. -->
+                <li class="nav-item"><a href="" class="nav-link"><i class="bi bi-file-bar-graph me-2"></i>Reportes</a></li>
             </ul>
-            <!-- Línea divisoria. -->
+             <!--|==============| LÍNEA DIVISORIA |==============|-->
             <hr>
             <!-- Botón que vuelve al login (index.html): así “se cierra la sesión” en el prototipo. -->
             <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
