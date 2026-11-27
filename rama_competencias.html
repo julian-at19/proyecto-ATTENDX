@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Competencias en el SENA</title>
+  <style>
+:root {
+  --bg: #f7faf5;
+  --card: #ffffff;
+  --text: #1d2a1a;
+  --muted: #5b6b57;
+  --accent: #39a900;
+  --accent2: #00304d;
+  --line: #dfe8da;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10170e;
+    --card: #182216;
+    --text: #e8f0e4;
+    --muted: #a3b39e;
+    --accent: #6fd13a;
+    --accent2: #8cc8ee;
+    --line: #2a3827;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+}
+
+header { padding: 48px 20px 28px; text-align: center; max-width: 820px; margin: 0 auto; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 0 0 10px; color: var(--accent); }
+header p { color: var(--muted); margin: 0 auto; max-width: 620px; }
+
+main { max-width: 820px; margin: 0 auto; padding: 0 20px 56px; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 8px 0 24px; }
+.tabs button {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  padding: 9px 16px;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+.tabs button[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.panel { display: none; }
+.panel.on { display: block; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; }
+.card h3 { margin: 0 0 6px; color: var(--accent2); font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+
+.tag { display: inline-block; font-size: .75rem; background: var(--accent); color: #fff; border-radius: 6px; padding: 2px 8px; margin-bottom: 8px; }
+
+.saber { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; text-align: center; }
+.saber .card b { display: block; font-size: 1.3rem; color: var(--accent); }
+
+footer { max-width: 820px; margin: 0 auto; padding: 0 20px 40px; color: var(--muted); font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Competencias en el SENA</h1>
+    <p>El SENA forma bajo el modelo de formación profesional integral por competencias: no solo qué sabe el aprendiz, sino qué sabe hacer y cómo se comporta en el entorno laboral.</p>
+  </header>
+
+  <main>
+    <div class="tabs" role="tablist" aria-label="Secciones de competencias">
+      <button id="tab-tipos" role="tab" aria-selected="true"
+              aria-controls="tipos" tabindex="0" data-t="tipos">
+        Tipos de competencias
+      </button>
+      <button id="tab-transv" role="tab" aria-selected="false"
+              aria-controls="transv" tabindex="-1" data-t="transv">
+        Transversales
+      </button>
+      <button id="tab-enfoque" role="tab" aria-selected="false"
+              aria-controls="enfoque" tabindex="-1" data-t="enfoque">
+        Enfoque integral
+      </button>
+    </div>
+
+    <section class="panel on" id="tipos" role="tabpanel"
+             aria-labelledby="tab-tipos" tabindex="0">
+      <div class="grid">
+        <div class="card"><span class="tag">Específicas</span><h3>Técnicas</h3><p>Son propias de cada titulación o programa: aplican los conocimientos del oficio o área (software, agroindustria, contabilidad, mecánica, etc.).</p></div>
+        <div class="card"><span class="tag">Generales</span><h3>Básicas</h3><p>Fundamentos que el aprendiz necesita para desenvolverse en el contexto académico y laboral.</p></div>
+        <div class="card"><span class="tag">Personales</span><h3>Socioemocionales</h3><p>Habilidades para relacionarse, manejar emociones y convivir en equipos de trabajo.</p></div>
+        <div class="card"><span class="tag">Todas las áreas</span><h3>Transversales</h3><p>Se desarrollan en cualquier programa, junto con la parte técnica, para mejorar la empleabilidad.</p></div>
+      </div>
+    </section>
+
+    <section class="panel" id="transv" role="tabpanel"
+             aria-labelledby="tab-transv" tabindex="0">
+      <div class="card"><h3>Liderazgo y trabajo en equipo</h3><p>Destacadas en estudios sobre programas técnicos y tecnológicos del SENA como elementos clave para el éxito profesional.</p></div>
+      <div class="card"><h3>Ética y cultura de paz</h3><p>El SENA cuenta con guías para el desarrollo de competencias en esta área.</p></div>
+      <div class="card"><h3>Emprendimiento</h3><p>También tiene guías específicas para desarrollar competencias emprendedoras.</p></div>
+      <div class="card"><h3>Orientación socio-ocupacional</h3><p>Acompaña al aprendiz en la toma de decisiones sobre su proyecto laboral, especialmente en la articulación con la educación media.</p></div>
+    </section>
+
+    <section class="panel" id="enfoque" role="tabpanel"
+             aria-labelledby="tab-enfoque" tabindex="0">
+      <div class="saber">
+        <div class="card"><b>Saber</b><p>Dimensión cognitiva: conocimientos.</p></div>
+        <div class="card"><b>Hacer</b><p>Dimensión procedimental: habilidades y destrezas.</p></div>
+        <div class="card"><b>Ser</b><p>Dimensión actitudinal: valores y actitudes.</p></div>
+      </div>
+      <div class="card" style="margin-top:14px"><h3>Aprendizaje por proyectos</h3><p>La formación se organiza por proyectos y técnicas didácticas activas, buscando que el aprendiz desarrolle la competencia de forma integrada.</p></div>
+      <div class="card"><h3>Evaluación frente a normas de competencia laboral</h3><p>La evaluación formativa es fundamental y busca evidenciar el conocimiento y el desempeño del aprendiz frente a la norma sectorial de competencia laboral.</p></div>
+    </section>
+  </main>
+
+  <footer>Resumen elaborado a partir de documentos académicos e institucionales sobre la formación profesional integral del SENA. Para el detalle de un programa específico, consulta su diseño curricular en sena.edu.co.</footer>
+
+  <script>
+// Navegación por pestañas: cada función hace una sola tarea.
+
+const botones = document.querySelectorAll('.tabs button');
+const paneles = document.querySelectorAll('.panel');
+
+// Marca como seleccionado únicamente el botón recibido.
+function marcarBoton(botonActivo) {
+  botones.forEach(function (b) {
+    b.setAttribute('aria-selected', b === botonActivo ? 'true' : 'false');
+    b.setAttribute('tabindex', b === botonActivo ? '0' : '-1');
+  });
+}
+
+// Muestra el panel con el id indicado y oculta los demás.
+function mostrarPanel(id) {
+  paneles.forEach(function (p) {
+    p.classList.toggle('on', p.id === id);
+  });
+}
+
+// Cambia de pestaña (botón + panel).
+function seleccionarPestana(boton) {
+  marcarBoton(boton);
+  mostrarPanel(boton.dataset.t);
+}
+
+// Registra los eventos de clic.
+function iniciar() {
+  botones.forEach(function (b) {
+    b.addEventListener('click', function () { seleccionarPestana(b); });
+  });
+}
+
+iniciar();
+</script>
+</body>
+</html>
