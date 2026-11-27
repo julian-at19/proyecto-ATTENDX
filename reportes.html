@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes | ATTENDX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body class="bg-body-tertiary">
+    <aside class="offcanvas-lg offcanvas-start sidebar" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h2 class="offcanvas-title fs-5" id="tituloMenu"><i class="bi bi-qr-code-scan me-2"></i>ATTENDX</h2>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-3">
+            <a href="dashboard.html" class="d-none d-lg-flex align-items-center mb-3 text-white text-decoration-none fs-5 fw-bold">
+                <i class="bi bi-qr-code-scan me-2 text-sena"></i>ATTENDX
+            </a>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="bi bi-person-circle me-2"></i>Usuarios</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-people me-2"></i>Aprendices</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-calendar-week me-2"></i>Horarios</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-qr-code-scan me-2"></i>Asistencia QR</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-check-circle-fill me-2"></i>Justificaciones</a></li>
+                <li class="nav-item"><a href="reportes.html" class="nav-link active" aria-current="page"><i class="bi bi-file-bar-graph me-2"></i>Reportes</a></li>
+            </ul>
+            <hr>
+            <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
+        </div>
+    </aside>
+
+    <div class="contenido">
+        <nav class="navbar bg-white border-bottom px-3 sticky-top">
+            <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú">
+                <i class="bi bi-list"></i>
+            </button>
+            <span class="navbar-text fw-semibold d-none d-sm-inline">Panel de administración</span>
+            <div class="dropdown ms-auto">
+                <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle fs-5"></i><span class="d-none d-md-inline">Administrador</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li><h6 class="dropdown-header">Administrador ATTENDX</h6></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="p-3 p-md-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                <div>
+                    <h1 class="h3 mb-1">Reportes de asistencia</h1>
+                    <nav aria-label="Migas de pan">
+                        <ol class="breadcrumb mb-0 small">
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-secondary" id="btnImprimir"><i class="bi bi-printer me-1"></i>Imprimir</button>
+                    <button type="button" class="btn btn-sena" id="btnExportar"><i class="bi bi-download me-1"></i>Exportar CSV</button>
+                </div>
+            </div>
+
+            <div id="alertaReporte" class="alert d-none" role="status" aria-live="polite"></div>
+
+            <section class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4" aria-label="Indicadores de asistencia">
+                <div class="col">
+                    <article class="card tarjeta-kpi shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <div class="icono-kpi bg-primary-subtle text-primary"><i class="bi bi-people"></i></div>
+                            <div><p class="text-secondary small mb-0">Aprendices</p><h2 class="h4 mb-0" id="totalAprendices">0</h2></div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tarjeta-kpi shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <div class="icono-kpi bg-success-subtle text-success"><i class="bi bi-person-check"></i></div>
+                            <div><p class="text-secondary small mb-0">A tiempo</p><h2 class="h4 mb-0" id="totalATiempo">0</h2></div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tarjeta-kpi shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <div class="icono-kpi bg-warning-subtle text-warning-emphasis"><i class="bi bi-clock-history"></i></div>
+                            <div><p class="text-secondary small mb-0">Tardanzas</p><h2 class="h4 mb-0" id="totalTardanzas">0</h2></div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tarjeta-kpi shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <div class="icono-kpi bg-danger-subtle text-danger"><i class="bi bi-person-x"></i></div>
+                            <div><p class="text-secondary small mb-0">Ausencias</p><h2 class="h4 mb-0" id="totalAusencias">0</h2></div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Detalle de asistencia</h2>
+                    <form class="row g-2 mb-3" id="formFiltros">
+                        <div class="col-12 col-lg-3">
+                            <label for="buscar" class="visually-hidden">Buscar</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <input type="search" class="form-control" id="buscar" placeholder="Nombre o documento">
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-2">
+                            <label for="fechaDesde" class="visually-hidden">Desde</label>
+                            <input type="date" class="form-control" id="fechaDesde" aria-label="Fecha desde">
+                        </div>
+                        <div class="col-6 col-lg-2">
+                            <label for="fechaHasta" class="visually-hidden">Hasta</label>
+                            <input type="date" class="form-control" id="fechaHasta" aria-label="Fecha hasta">
+                        </div>
+                        <div class="col-6 col-lg-2">
+                            <label for="filtroFicha" class="visually-hidden">Ficha</label>
+                            <select class="form-select" id="filtroFicha"><option value="">Todas las fichas</option></select>
+                        </div>
+                        <div class="col-6 col-lg-2">
+                            <label for="filtroEstado" class="visually-hidden">Estado</label>
+                            <select class="form-select" id="filtroEstado">
+                                <option value="">Todos los estados</option>
+                                <option>A tiempo</option>
+                                <option>Tardanza</option>
+                                <option>Ausente</option>
+                                <option>Justificado</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-1">
+                            <button type="reset" class="btn btn-outline-secondary w-100" title="Limpiar filtros">
+                                <i class="bi bi-x-lg"></i><span class="visually-hidden">Limpiar</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Aprendiz</th>
+                                    <th scope="col">Documento</th>
+                                    <th scope="col">Ficha</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Entrada</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaReportes"></tbody>
+                        </table>
+                    </div>
+                    <p class="small text-secondary mt-3 mb-0" id="resumenReporte" aria-live="polite"></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
