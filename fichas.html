@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="css/estilos.css" rel="stylesheet">
 </head>
-<!--//////////////      PROPIEDADES DEL HTML5        //////////////-->
+<!--//////////////      CONTENIDO DEL HTML5        //////////////-->
 <body class="bg-body-tertiary">
 
     <!--|==============| MENÚ LATERAL |==============|-->
@@ -49,87 +49,62 @@
             </ul>
              <!--|==============| LÍNEA DIVISORIA |==============|-->
             <hr>
-            <!-- Botón que vuelve al login (index.html): así “se cierra la sesión” en el prototipo. -->
             <a href="index.html" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-left me-1"></i>Cerrar sesión</a>
-        <!-- Cierra el cuerpo del menú. -->
             </div>
-    <!-- Cierra el menú lateral. -->
     </aside>
 
-    <!-- ===================== ZONA DERECHA ===================== -->
-    <!-- Nuestra clase contenido aplica el margin-left en computador. -->
+    <!--|==============| ZONA DERECHA |==============|-->
     <div class="contenido">
 
         <!-- Barra superior -->
-        <!-- Barra blanca con borde inferior. sticky-top la deja pegada arriba al hacer scroll. -->
         <nav class="navbar bg-white border-bottom px-3 sticky-top">
-            <!-- Botón para abrir el menú en celular. d-lg-none lo oculta en computador (allá el menú siempre se ve). data-bs-toggle="offcanvas" + data-bs-target="#menuLateral" abren el panel. -->
             <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menú">
-                <!-- Ícono de “hamburguesa”. -->
                 <i class="bi bi-list"></i>
-            <!-- Cierra el botón. -->
             </button>
-            <!-- Texto de la barra; se oculta en celulares muy pequeños (d-none d-sm-inline). -->
             <span class="navbar-text fw-semibold d-none d-sm-inline">Panel de administración</span>
-            <!-- Menú desplegable del usuario; ms-auto lo empuja a la derecha. -->
+            <!-- Menú desplegable del usuario -->
             <div class="dropdown ms-auto">
-                <!-- Botón que abre el desplegable. dropdown-toggle dibuja la flechita; data-bs-toggle="dropdown" lo hace funcionar. -->
                 <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <!-- Ícono de usuario. -->
                     <i class="bi bi-person-circle fs-5"></i>
                     <!-- Nombre del usuario, visible desde tablet. -->
                     <span class="d-none d-md-inline">Admin SENA</span>
-                <!-- Cierra el botón. -->
                 </button>
-                <!-- Lista de opciones. dropdown-menu-end la alinea a la derecha para que no se salga de la pantalla. -->
+                <!-- Lista de opciones. -->
                 <ul class="dropdown-menu dropdown-menu-end shadow">
-                    <!-- Encabezado no clicable dentro del menú. -->
                     <li><h6 class="dropdown-header">admin@sena.edu.co</h6></li>
                     <!-- Opción del menú (pantalla aún no construida). -->
                     <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
-                    <!-- Línea separadora. -->
                     <li><hr class="dropdown-divider"></li>
                     <!-- Otra forma de salir, en rojo (text-danger). -->
                     <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a></li>
                 <!-- Cierra la lista. -->
                 </ul>
-            <!-- Cierra el desplegable. -->
             </div>
-        <!-- Cierra la barra superior. -->
         </nav>
 
-        <!-- Contenido de la página -->
-        <!-- Relleno 3 en celular y 4 desde tablet. -->
+        <!--|==============| CONTENIDO DE LA PAGINA |==============|-->
         <main class="p-3 p-md-4">
-<!-- INICIO CONTENIDO -->
             <!-- Encabezado del módulo -->
-            <!-- Flexbox con salto de línea. -->
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
                 <!-- Bloque del título. -->
                 <div>
-                    <!-- Título. -->
-                    <h1 class="h3 mb-1">Gestión de productos</h1>
-                    <!-- Migas de pan. -->
+                    <h1 class="h3 mb-1">Administración de fichas</h1>
                     <nav aria-label="breadcrumb">
                         <!-- Lista. -->
                         <ol class="breadcrumb mb-0 small">
                             <!-- Nivel 1. -->
-                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
                             <!-- Nivel actual. -->
-                            <li class="breadcrumb-item active" aria-current="page">Productos</li>
-                        <!-- Cierra la lista. -->
+                            <li class="breadcrumb-item active" aria-current="page">Fichas</li>
                         </ol>
-                    <!-- Cierra las migas. -->
                     </nav>
-                <!-- Cierra el bloque. -->
                 </div>
-                <!-- Grupo de dos botones con espacio entre ellos. -->
                 <div class="d-flex gap-2">
                     <!-- Acción secundaria (aún sin función): botón solo con borde. -->
-                    <button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-earmark-excel me-1"></i>Exportar</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalProducto"><i class="bi bi-arrow-bar-up me-1"></i>Exportar</button> <!-- pendiente crear una ventana para exportar-->
                     <!-- Acción principal: abre el formulario. -->
-                    <button type="button" class="btn btn-sena" data-bs-toggle="modal" data-bs-target="#modalProducto"><i class="bi bi-plus-lg me-1"></i>Nuevo producto</button>
-                <!-- Cierra el grupo. -->
+                    <button type="button" class="btn btn-sena" data-bs-toggle="modal" data-bs-target="#modalProducto"><i class="bi bi-plus-lg me-1"></i>Agregar ficha</button>
                 </div>
             <!-- Cierra el encabezado. -->
             </div>
